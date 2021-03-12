@@ -1,0 +1,48 @@
+#!/bin/bash
+# author: Caio Marcelo Campoy Guedes<caiomcg@gmail.com>
+
+RED='\033[1;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[1;32m'
+CLEAR='\033[0m'
+
+SUCCESS_TAG="[ ${GREEN}HOOK${CLEAR} ]"
+NEUTRAL_TAG="[ ${YELLOW}HOOK${CLEAR} ]"
+FAILURE_TAG="[ ${RED}HOOK${CLEAR} ]"
+
+printf "${NEUTRAL_TAG} Validating commit message\n"
+
+error_msg='
+Aborting commit!
+
+Please follow the convetions below.
+If in doubt refer to: https://www.conventionalcommits.org/en/v1.0.0
+
+* Commit Type:
+- build: Build related changes
+- chore: Build process or auxiliary tool changes
+- ci: Continuous integration changes
+- docs: Documentation only changes
+- feat: A new feature
+- fix: A buf fix
+- perf: A code change that improves performance
+- refactor: A code change that  neither fixes a bug or adds a feature
+- revert: Reverting to a previous state
+- style: Markup, white-spaces, formatting, missing semi-colons
+- test: Adding new or missing tests
+
+* Followed by the commit type there can be, optionally, in parenthesis, the
+subsystem(s) affected by the change (comma delimited).
+
+* After the commit type and the optional subsystem, follows a collon, space (": ")
+followed by a brief subject not ending with a period. Note that the entire first
+line should not exceed 50 characters
+
+* Optionally leave a blank line followed by the body that can be divided in blocks
+and a single empty line between them.
+
+* Optionally but strongly suggested comes the footer that carry your version 
+control tool conventions.
+'
+
+cargo r $1
